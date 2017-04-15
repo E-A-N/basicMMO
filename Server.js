@@ -50,7 +50,7 @@ var io = require('socket.io')(server);
 
 // Your IP address is how other devices on a network find this one. The 127.0.0.1 is known as a loop-back address, or
 // otherwise known as 'localhost', which is basically a way for a device to send messages to itself.
-server.listen(3512, "127.0.0.1");
+server.listen(7777, "127.0.0.1");
 
 
 // Used to manage players in the game. See the slightly more advanced stuff
