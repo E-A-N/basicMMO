@@ -36,7 +36,7 @@ FunkyMultiplayerGame.Game.prototype = {
         if(this.input.keyboard.isDown(Phaser.Keyboard.ENTER)){
             var randomColor = Math.random() * 0xffffff;
             var properties = {tint: 'tint', color: randomColor };
-            socket.emit('change_color', properties);
+            socket.emit('changeGraphics', properties);
         }
     }
 };
