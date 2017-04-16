@@ -48,9 +48,31 @@ var io = require('socket.io')(server);
 // There is a chance that the port you want to use is already being occupied by another
 // process, so something to watch out for if you can't start the server.
 
+var sitePath = process.argv[2] || ".";
+var port = 7777;
+//Make sure server is cross platform
+var gameRoute = path.join(__dirname,'client',sitePath);
+gameRoute = path.normalize(gameRoute);
+
+//request logging
+server.use(function(req, res, next) {
+	console.log(req.url);
+	next();
+});
+
+//start server
+console.log(sitePath);
+console.log("Starting server in: " + gameRoute);
+
 // Your IP address is how other devices on a network find this one. The 127.0.0.1 is known as a loop-back address, or
 // otherwise known as 'localhost', which is basically a way for a device to send messages to itself.
-server.listen(7777, "127.0.0.1");
+server.use(express.static(gameRoute));
+server.listen(port, function() {
+	console.log("Server running at: http://localhost:" + port);
+});
+
+//server.listen(7777, "127.0.0.1");
+
 
 
 // Used to manage players in the game. See the slightly more advanced stuff
