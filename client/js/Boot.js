@@ -81,11 +81,13 @@ socket.on('state_update', function (data) {
                 _this.playerSprites[data[i].id].x = data[i].x;
                 _this.playerSprites[data[i].id].y = data[i].y;
 
+
+                //data[i].graphics.change = data[i].graphics.change || false;
                 //A color change needs to occur
-                if (data[i].graphics.change !== undefined) {
-                    _this.playerSprites[data[i].id].tint = 0x3d9900;
+                if (data[i].graphics) {
+                    _this.playerSprites[data[i].id].tint = data[i].graphics.tint;
                     console.log("Color Change!!! <3");
-                    //_this.playerSprites[data[i].id].tint = data[i].tint;
+
                 }
             }
             // No property was found for the player that this socket ID belongs to. Add a sprite for them.

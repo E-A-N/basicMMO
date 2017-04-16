@@ -38,5 +38,13 @@ FunkyMultiplayerGame.Game.prototype = {
             var properties = {tint: 'tint', color: randomColor };
             socket.emit('changeGraphics', properties);
         }
+
+        if(this.input.keyboard.isDown(Phaser.Keyboard.SPACE)){
+            //change back to original color
+            console.log("Space has been pressed!! <3");
+            var properties = {tint: 'tint', color: 0x0 };
+            socket.emit('changeGraphics', properties);
+        }
+
     }
 };

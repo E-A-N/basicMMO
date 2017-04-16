@@ -80,6 +80,7 @@ server.listen(port, function() {
 // after you understand everything else and are done with the basics.
 var players = {};
 
+var graphicsUpdate = false;
 /** *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
  *  *   *   * Some useful stuff you can do with Socket.io   *   *   *   *
  *  *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *
@@ -196,7 +197,7 @@ io.on('connection', function (socket) {
             change: true,
             tint : data.color,
         };
-
+        graphicsUpdate = true;
     });
 
 
@@ -241,9 +242,14 @@ function preparePlayersDataToSend() {
 				  id: key,
 					x: players[key].x,
 					y: players[key].y,
-					graphics: players[key].graphics,
+					graphics: graphicsUpdate ? players[key].graphics : false,
+					//graphics: players[key].graphics,
 				}
+
         dataToSend.push(playerData);
     });
+		//reset graphics state
+
+		graphicsUpdate = false;
     return dataToSend;
 }
