@@ -204,7 +204,7 @@ io.on('connection', function (socket) {
 
 // How often to send game updates. Faster paced games will require a lower value for emitRate,
 // so that updates are sent more often. Do some research and test what works for your game.
-var emitRate = 100;
+var emitRate = 25;
 // This is what I call an 'emitter'. It is used to continuously send updates of the game world to all relevant clients.
 setInterval(function () {
     // Prepare the positions of the players, ready to send to all players.
