@@ -54,12 +54,13 @@ var port = 7777;
 var gameRoute = path.join(__dirname,'client',sitePath);
 gameRoute = path.normalize(gameRoute);
 
+/*
 //request logging
 app.use(function(req, res, next) {
 	console.log(req.url);
 	next();
 });
-
+*/
 //start server
 console.log(sitePath);
 console.log("Starting server in: " + gameRoute);
@@ -204,7 +205,7 @@ io.on('connection', function (socket) {
 
 // How often to send game updates. Faster paced games will require a lower value for emitRate,
 // so that updates are sent more often. Do some research and test what works for your game.
-var emitRate = 25;
+var emitRate = 100;
 // This is what I call an 'emitter'. It is used to continuously send updates of the game world to all relevant clients.
 setInterval(function () {
     // Prepare the positions of the players, ready to send to all players.

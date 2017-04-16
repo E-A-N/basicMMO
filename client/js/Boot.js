@@ -3,7 +3,7 @@
 // a state possible without actually being in the state file itself.
 var _this;
 
-// Connect to the Socket.io server that is running on the IP address 127.0.0.1 and at port number 3512.
+// Connect to the Socket.io server that is running on the IP address 127.0.0.1 and at port number 7777.
 var socket = io("http://127.0.0.1:7777");
 // This connects to 127.0.0.1 which is localhost (this computer), which is also where the server is running.
 // If the server was running somewhere else, like on a cloud service, then change the IP address to the
