@@ -186,15 +186,16 @@ io.on('connection', function (socket) {
         players[socket.id][data.axis] += data.force * 2;
     });
 
-    socket.on('change_color', function (data) {
+    socket.on('changeGraphics', function (data) {
 
         //Communicate to the client that a color change needs to occur
 				console.log(`${socket.id} wants their color changed!`)
-        players[socket.id].graphicChange = true;
 
         //Adjust sprite tint
-				players[socket.id].graphics.change = true;
-				players[socket.id].graphics.data.tint = data.color;
+        players[socket.id].graphics = {
+            change: true,
+            tint : data.color,
+        };
 
     });
 
