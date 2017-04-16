@@ -186,6 +186,16 @@ io.on('connection', function (socket) {
         players[socket.id][data.axis] += data.force * 2;
     });
 
+    socket.on('change_color', function (data) {
+
+        //Communicate to the client that a color change needs to occur
+				console.log(`${socket.id} wants their color changed!`)
+        players[socket.id].colorChange = true;
+        //Adjust sprite tint
+        players[socket.id][data.tint] = data.color;
+    });
+
+
     // When a client socket disconnects (closes the page, refreshes, timeout etc.),
     // then this event will automatically be triggered.
     socket.on('disconnecting', function () {

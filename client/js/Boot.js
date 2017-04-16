@@ -73,12 +73,20 @@ socket.on('state_update', function (data) {
     // Check that the 'playerSprites' object exists on whatever the context is for '_this'.
     if(_this.playerSprites !== undefined){
         // The 'playerSprites' object exists.
-        for(var i= 0, len = data.length; i<len; i+=1){
+        var len = data.length;
+        for(var i= 0; i < len; i += 1){
             // Check that there is a property on the 'playerSprites' with the key that matches this socket ID.
             if(_this.playerSprites[data[i].id]){
                 // This player's sprite exists. Update its position.
                 _this.playerSprites[data[i].id].x = data[i].x;
                 _this.playerSprites[data[i].id].y = data[i].y;
+
+                //A color change needs to occur
+                if (_this.playerSprites[data[i].id].colorChange) {
+                    _this.playerSprites[data[i].id].tint = 0x3d9900;
+                    console.log("Color Change!!! <3");
+                    //_this.playerSprites[data[i].id].tint = data[i].tint;
+                }
             }
             // No property was found for the player that this socket ID belongs to. Add a sprite for them.
             else {

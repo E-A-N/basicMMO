@@ -17,7 +17,7 @@ FunkyMultiplayerGame.Game.prototype = {
             align: 'center'
         });
     },
-    
+
     update: function () {
         if(this.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
             socket.emit('move_player', {axis: 'x', force: -1});
@@ -29,7 +29,14 @@ FunkyMultiplayerGame.Game.prototype = {
             socket.emit('move_player', {axis: 'y', force: -1});
         }
         if(this.input.keyboard.isDown(Phaser.Keyboard.DOWN)){
-            socket.emit('move_player', {axis: 'y', force: 1});
+            var downData = {axis: 'y', force: 1};
+            socket.emit('move_player', downData);
+        }
+        //Change Color to random value
+        if(this.input.keyboard.isDown(Phaser.Keyboard.ENTER)){
+            var randomColor = Math.random() * 0xffffff;
+            var properties = {tint: 'tint', color: randomColor };
+            socket.emit('change_color', properties);
         }
     }
 };
