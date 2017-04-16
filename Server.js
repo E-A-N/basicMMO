@@ -190,9 +190,12 @@ io.on('connection', function (socket) {
 
         //Communicate to the client that a color change needs to occur
 				console.log(`${socket.id} wants their color changed!`)
-        players[socket.id].colorChange = true;
+        players[socket.id].graphicChange = true;
+
         //Adjust sprite tint
-        players[socket.id][data.tint] = data.color;
+				players[socket.id].graphics.change = true;
+				players[socket.id].graphics.data.tint = data.color;
+
     });
 
 
@@ -233,7 +236,13 @@ function preparePlayersDataToSend() {
     // Loop though the list of players and get the position of each player.
     keys.forEach(function (key) {
         // Add the position (and ID, so the client knows who is where) to the data to send.
-        dataToSend.push({id: key, x: players[key].x, y: players[key].y});
+				var playerData = {
+				  id: key,
+					x: players[key].x,
+					y: players[key].y,
+					graphics: players[key].graphics,
+				}
+        dataToSend.push(playerData);
     });
     return dataToSend;
 }

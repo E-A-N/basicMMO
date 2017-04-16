@@ -82,7 +82,7 @@ socket.on('state_update', function (data) {
                 _this.playerSprites[data[i].id].y = data[i].y;
 
                 //A color change needs to occur
-                if (_this.playerSprites[data[i].id].colorChange) {
+                if (data[i].id.graphics.change) {
                     _this.playerSprites[data[i].id].tint = 0x3d9900;
                     console.log("Color Change!!! <3");
                     //_this.playerSprites[data[i].id].tint = data[i].tint;
