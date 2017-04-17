@@ -41,6 +41,9 @@ var server = require('http').Server(app);
 // 'socketIOServer' or something similar if you wish, but all of the documentation for Socket.io uses just 'io'.
 var io = require('socket.io')(server);
 
+//handle the servers update loop
+var dataSync = require('server/dataSync.js');
+
 // What port and IP address to bind the server to. The port number can be any valid public port number (Google it if not sure).
 // The port is used to direct network traffic arriving at your computer to a particular service, in this case
 // the HTTP server that was created, so anything arriving on port 3512 will go to the HTTP server.
