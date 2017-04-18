@@ -251,8 +251,7 @@ function preparePlayersDataToSend() {
 
         dataToSend.push(playerData);
     });
-		//reset graphics state
-
-		graphicsUpdate = false;
+	//reset graphics state
+	graphicsUpdate = false;
     return dataToSend;
 }
