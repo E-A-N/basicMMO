@@ -7,12 +7,6 @@ exports = module.exports = function(io){
         console.log("* * * A new connection has been made.");
         console.log("* ID of new socket object: " + socket.id);
 
-        socket.emit('hello_client', {crazyString: 'abc123', coolArray: [40, 'beep', true]});
-        // Or with no data, just an event.
-        socket.emit('how_are_you');
-        // An event that the client isn't listening for, so will be ignored when the client receives it.
-        socket.emit('anyone_there');
-
         socket.username = 'DEFAULT NAME';
         socket.score = 0;
         socket.isInGame = false;
@@ -21,10 +15,6 @@ exports = module.exports = function(io){
 
             socket.username = data.username;
             console.log("* Username changed to: " + data.username);
-        });
-
-        socket.on('im_fine', function () {
-            socket.emit('good_to_hear');
         });
 
         socket.on('join_game', function () {
