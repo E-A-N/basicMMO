@@ -3,40 +3,8 @@
 // a state possible without actually being in the state file itself.
 var _this;
 
-// Connect to the Socket.io server that is running on the IP address 127.0.0.1 and at port number 7777.
+// Connect to the Socket.io server that is running on localhost at port number 7777.
 var socket = io("http://127.0.0.1:7777");
-// This connects to 127.0.0.1 which is localhost (this computer), which is also where the server is running.
-// If the server was running somewhere else, like on a cloud service, then change the IP address to the
-// public IP address of that device. If on Windows, open a console and type 'ipconfig' to find the IPv4
-// address of a computer.
-
-// Add some event listeners to this socket object.
-// When the connection is made, the server can send events to this client, and vice versa.
-// Open your browser's console to see the output. Follow along with the instructions there.
-
-socket.on('hello_client', function (data) {
-    console.log("");
-    console.log("* * * hello_client event received from server.");
-    console.log("* Data was also sent:");
-    console.log(data);
-});
-
-socket.on('how_are_you', function () {
-    console.log("");
-    console.log("* * * how_are_you event received from server.");
-    console.log("* Try sending an event back. You can use the browser console to send events manually.");
-    console.log("* Type in `socket.emit('im_fine');` and hit enter.");
-});
-
-socket.on('good_to_hear', function () {
-    console.log("");
-    console.log("* * * good_to_hear event received from server.");
-    console.log("* That's good to hear. :)");
-    console.log("* Now try sending an event with some data to the server.");
-    console.log("* Let's change the username stored on the socket for this client on the server.");
-    console.log("* Type in `socket.emit('change_username', {username: 'PUT A NEW USERNAME HERE'});` and hit enter.");
-    console.log("* Now check the output in the command line console that the server is running in.");
-});
 
 socket.on('join_game_success', function () {
     console.log("");
