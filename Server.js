@@ -17,6 +17,7 @@ var dataSync = require(servRoute)(io);
 //open port for game to be played on
 var sitePath = process.argv[2] || ".";
 var port = 7777;
+var address = "http://localhost:";
 
 var gameRoute = path.join(__dirname,'client',sitePath);
 gameRoute = path.normalize(gameRoute);
@@ -34,5 +35,5 @@ console.log("Starting server in: " + gameRoute);
 
 app.use(express.static(gameRoute));
 server.listen(port, function() {
-	console.log("Server running at: http://localhost:" + port);
+	console.log("Server running at: " + address + port);
 });
