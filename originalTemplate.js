@@ -1,28 +1,59 @@
+/** Simple, easy, networked multiplayer game template using Socket.io and Phaser.io, with lots of explanations.
+ * By Johnathan Fisher http://www.waywardworlds.com @waywardworlds
+ *
+ *  *   *   *   *   *   *   *   *   *   *   *   *   *   *
+ *  *   *   *   How to set up the project   *   *   *   *
+ *  *   *   *   *   *   *   *   *   *   *   *   *   *   *
+ *
+ * First, you need to have NodeJS and NPM installed. That should be fairly easy to do.
+ * Open a command-line user interface (CLI), and enter 'node -v', then 'npm -v', which
+ * should show the versions of Node and NPM if they are set up correctly, which should
+ * output something like 'v5.10.0' and '4.4.4', or whatever version you installed.
+ *
+ * This project uses the Express.js and Socket.io libraries.
+ * Everything that is required should be included in the package.json file. Just navigate to
+ * the parent directory of your game, i.e. 'C:\path\to\basic-multiplayer-template' in a CLI
+ * and enter 'npm install'.
+ * This should go through everything listed in the package.json file and install them from NPM.
+ *
+ * There should now be a folder in your game directory called 'node_modules'.
+ * It will be huge and full of junk and looks like a mess, but that's just how NPM is...
+ *
+ * This file is Server.js, which is what you should run with Node.
+ * Assuming you are still in the directory of your game in the command line, enter
+ * 'node server'. That will run this javascript file and set everything up that is in here.
+ *
+ * Below is the code and how it works.
+ * */
+
 // Strict mode helps to prevent the use of weird things that you might do in javascript by accident.
 "use strict";
 
-var express = require('express');.
+// Gathering dependencies. The require(...) bit imports the stuff that was installed through npm.
+var express = require('express');
+// Create an Express app. Socket.io just sits on top of Express, but Express itself isn't
+// used much, unless you want to serve files with it, but that is not recommended.
 var app = express();
+// Make a new HTTP server from Express. This doesn't get used itself either, unless you want to do stuff with it.
 var server = require('http').Server(app);
+// This is where Socket.io is set up. Socket takes in the HTTP server created above, and basically adds it's own
+// layer on top of it that is nice and easy to use. 'io' is the Socket.io server object. You could call it
+// 'socketIOServer' or something similar if you wish, but all of the documentation for Socket.io uses just 'io'.
 var io = require('socket.io')(server);
 
-<<<<<<< HEAD
 //handle the servers update loop
-//var dataSync = require('server/dataSync.js');
-=======
-//use path object to make server platform agnostic
+var dataSync = require('server/dataSync.js');
+
+// What port and IP address to bind the server to. The port number can be any valid public port number (Google it if not sure).
+// The port is used to direct network traffic arriving at your computer to a particular service, in this case
+// the HTTP server that was created, so anything arriving on port 3512 will go to the HTTP server.
+
+// There is a chance that the port you want to use is already being occupied by another
+// process, so something to watch out for if you can't start the server.
 var path	= require('path');
->>>>>>> c21c5c01d1501cc205ab1beb1733581553bf33cf
-
-//retrieve main server logic
-var servRoute = path.join(__dirname,'server','dataSync');
-servRoute = path.normalize(servRoute);
-var dataSync = require(servRoute)(io);
-
-//open port for game to be played on
 var sitePath = process.argv[2] || ".";
 var port = 7777;
-
+//Make sure server is cross platform
 var gameRoute = path.join(__dirname,'client',sitePath);
 gameRoute = path.normalize(gameRoute);
 
@@ -37,11 +68,12 @@ app.use(function(req, res, next) {
 console.log(sitePath);
 console.log("Starting server in: " + gameRoute);
 
+// Your IP address is how other devices on a network find this one. The 127.0.0.1 is known as a loop-back address, or
+// otherwise known as 'localhost', which is basically a way for a device to send messages to itself.
 app.use(express.static(gameRoute));
 server.listen(port, function() {
 	console.log("Server running at: http://localhost:" + port);
 });
-<<<<<<< HEAD
 
 //server.listen(7777, "127.0.0.1");
 
@@ -219,9 +251,8 @@ function preparePlayersDataToSend() {
 
         dataToSend.push(playerData);
     });
-	//reset graphics state
-	graphicsUpdate = false;
+		//reset graphics state
+
+		graphicsUpdate = false;
     return dataToSend;
 }
-=======
->>>>>>> c21c5c01d1501cc205ab1beb1733581553bf33cf
