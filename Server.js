@@ -1,7 +1,7 @@
 // Strict mode helps to prevent the use of weird things that you might do in javascript by accident.
 "use strict";
 
-var express = require('express');.
+var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
