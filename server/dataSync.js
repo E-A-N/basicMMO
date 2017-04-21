@@ -1,6 +1,6 @@
 exports = module.exports = function(io){
-    var players = {};
 
+    var players = {};
     var graphicsUpdate = false;
 
     io.on('connection', function (socket) {
@@ -87,13 +87,13 @@ exports = module.exports = function(io){
     // This is what I call an 'emitter'. It is used to continuously send updates of the game world to all relevant clients.
     setInterval(function () {
         // Prepare the positions of the players, ready to send to all players.
-        var dataToSend = preparePlayersDataToSend();
+        var dataToSend = gatherPlayerData();
 
         // Send the data to all clients in the room called 'game-room'.
         io.in('game-room').emit('state_update', dataToSend);
     }, emitRate);
 
-    function preparePlayersDataToSend() {
+    function gatherPlayerData() {
         // Prepare the positions of the players, ready to send to all players.
         var dataToSend = [];
         // 'players' is an object, so get a list of the keys.
