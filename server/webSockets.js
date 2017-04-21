@@ -28,7 +28,7 @@ exports = module.exports = function(io){
                     //Initiate default values for when character enter the game
                     x: 200,
                     y: 150,
-                    tint: 0xfffff,
+                    tint: 0xffffff,
                 };
                 // Add this socket to the room for the game. A room is an easy way to group sockets, so you can send events to a bunch of sockets easily.
                 // A socket can be in many rooms.
