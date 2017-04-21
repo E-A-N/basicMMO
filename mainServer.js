@@ -10,9 +10,9 @@ var io = require('socket.io')(server);
 var path	= require('path');
 
 //retrieve main server logic
-var servRoute = path.join(__dirname,'server','dataSync');
+var servRoute = path.join(__dirname,'server','webSockets');
 servRoute = path.normalize(servRoute);
-var dataSync = require(servRoute)(io);
+var webSockets = require(servRoute)(io);
 
 //open port for game to be played on
 var sitePath = process.argv[2] || ".";

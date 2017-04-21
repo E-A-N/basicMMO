@@ -25,7 +25,7 @@ exports = module.exports = function(io){
                 // Add a basic object that tracks player position to the list of players, using
                 // the ID of this socket as the key for convenience, as each socket ID is unique.
                 players[socket.id] = {
-                    //These are default values for when character enter the game
+                    //Initiate default values for when character enter the game
                     x: 200,
                     y: 150,
                     tint: 0xfffff,
