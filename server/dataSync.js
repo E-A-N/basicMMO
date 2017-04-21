@@ -27,6 +27,7 @@ exports = module.exports = function(io){
                 players[socket.id] = {
                     x: 200,
                     y: 150,
+                    //tint: players[socket.id].tint || 0xfffff,
                 };
                 // Add this socket to the room for the game. A room is an easy way to group sockets, so you can send events to a bunch of sockets easily.
                 // A socket can be in many rooms.
@@ -61,6 +62,8 @@ exports = module.exports = function(io){
                 change: true,
                 tint : data.color,
             };
+            //Store color information in socket to update future players
+            players[socket.id].tint = data.color;
             graphicsUpdate = true;
         });
 
