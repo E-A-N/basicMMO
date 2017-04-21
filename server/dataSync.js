@@ -26,7 +26,7 @@ exports = module.exports = function(io){
                 // the ID of this socket as the key for convenience, as each socket ID is unique.
                 players[socket.id] = {
                     x: 200,
-                    y: 150
+                    y: 150,
                 };
                 // Add this socket to the room for the game. A room is an easy way to group sockets, so you can send events to a bunch of sockets easily.
                 // A socket can be in many rooms.
@@ -39,6 +39,7 @@ exports = module.exports = function(io){
             else {
                 console.log("* " + socket.username + " is already in a game.");
             }
+            graphicsUpdate = true;
         });
 
         socket.on('move_player', function (data) {
@@ -71,10 +72,8 @@ exports = module.exports = function(io){
             if(socket.isInGame === true){
                 // Remove this player from the player list.
                 delete players[socket.id];
-                // This player was in a game and has disconnected, but the other players still in the game don't know that.
-                // We need to tell the other players to remove the sprite for this player from their clients.
-                // All of the players still in the game are in the room called 'game-room', so emit an event called 'remove_player'
-                // to that room, sending with it the key of the property to remove.
+
+                //Inform all clients to also remove delted player
                 io.in('game-room').emit('remove_player', socket.id);
             }
         });
@@ -89,13 +88,13 @@ exports = module.exports = function(io){
         // Loop though the list of players and get the position of each player.
         keys.forEach(function (key) {
             // Add the position (and ID, so the client knows who is where) to the data to send.
-    				var playerData = {
-    				  id: key,
-    					x: players[key].x,
-    					y: players[key].y,
-    					graphics: graphicsUpdate ? players[key].graphics : false,
-    					//graphics: players[key].graphics,
-    				}
+		    var playerData = {
+			  id: key,
+				x: players[key].x,
+				y: players[key].y,
+                graphics: graphicsUpdate ? players[key].graphics : false,
+				//graphics: players[key].graphics,
+			}
 
             dataToSend.push(playerData);
         });
@@ -104,6 +103,7 @@ exports = module.exports = function(io){
         return dataToSend;
     }
 
+    //begin serverloop with self evoking function
     (function serverLoop(){
         var loopRate = 100;
         setInterval(function () {

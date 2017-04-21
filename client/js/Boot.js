@@ -48,6 +48,7 @@ socket.on('state_update', function (data) {
                 // This player's sprite exists. Update its position.
                 _this.playerSprites[data[i].id].x = data[i].x;
                 _this.playerSprites[data[i].id].y = data[i].y;
+                //_this.playerSprites[data[i].id].tint = data[i].tint; //default tint value
 
 
                 //data[i].graphics.change = data[i].graphics.change || false;
