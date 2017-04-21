@@ -81,18 +81,6 @@ exports = module.exports = function(io){
 
     });
 
-    // How often to send game updates. Faster paced games will require a lower value for emitRate,
-    // so that updates are sent more often. Do some research and test what works for your game.
-    var emitRate = 100;
-    // This is what I call an 'emitter'. It is used to continuously send updates of the game world to all relevant clients.
-    setInterval(function () {
-        // Prepare the positions of the players, ready to send to all players.
-        var dataToSend = gatherPlayerData();
-
-        // Send the data to all clients in the room called 'game-room'.
-        io.in('game-room').emit('state_update', dataToSend);
-    }, emitRate);
-
     function gatherPlayerData() {
         // Prepare the positions of the players, ready to send to all players.
         var dataToSend = [];
@@ -111,9 +99,19 @@ exports = module.exports = function(io){
 
             dataToSend.push(playerData);
         });
-    		//reset graphics state
-
-    		graphicsUpdate = false;
+       //reset graphics state
+    	graphicsUpdate = false;
         return dataToSend;
     }
+
+    (function serverLoop(){
+        var loopRate = 100;
+        setInterval(function () {
+        // Prepare the positions of the players, ready to send to all players.
+        var dataToSend = gatherPlayerData();
+
+        // Send the data to all clients in the room called 'game-room'.
+        io.in('game-room').emit('state_update', dataToSend);
+    }, loopRate);
+    })();
 }
