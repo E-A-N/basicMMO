@@ -25,9 +25,10 @@ exports = module.exports = function(io){
                 // Add a basic object that tracks player position to the list of players, using
                 // the ID of this socket as the key for convenience, as each socket ID is unique.
                 players[socket.id] = {
+                    //These are default values for when character enter the game
                     x: 200,
                     y: 150,
-                    //tint: players[socket.id].tint || 0xfffff,
+                    tint: 0xfffff,
                 };
                 // Add this socket to the room for the game. A room is an easy way to group sockets, so you can send events to a bunch of sockets easily.
                 // A socket can be in many rooms.
@@ -92,9 +93,10 @@ exports = module.exports = function(io){
         keys.forEach(function (key) {
             // Add the position (and ID, so the client knows who is where) to the data to send.
 		    var playerData = {
-			  id: key,
+			    id: key,
 				x: players[key].x,
 				y: players[key].y,
+                tint: players[key].tint,
                 graphics: graphicsUpdate ? players[key].graphics : false,
 				//graphics: players[key].graphics,
 			}
@@ -107,14 +109,14 @@ exports = module.exports = function(io){
     }
 
     //begin serverloop with self evoking function
-    (function serverLoop(){
-        var loopRate = 100;
-        setInterval(function () {
-        // Prepare the positions of the players, ready to send to all players.
-        var dataToSend = gatherPlayerData();
+    (function serverLoop(loopRate){
 
-        // Send the data to all clients in the room called 'game-room'.
-        io.in('game-room').emit('state_update', dataToSend);
-    }, loopRate);
-    })();
+        setInterval(function () {
+            // Prepare the positions of the players, ready to send to all players.
+            var sendData = gatherPlayerData();
+
+            // Send the data to all clients in the room called 'game-room'.
+            io.in('game-room').emit('state_update', sendData);
+        }, loopRate);
+    })(100); //the value passed in is taken as argument
 }
