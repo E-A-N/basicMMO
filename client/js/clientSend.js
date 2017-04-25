@@ -12,3 +12,11 @@ Client.changeColor = function(color){
     data.tint = color;
     Client.socket.emit('changeGraphics',data);
 }
+Client.sendToServer = function(message,data){
+    switch(message){
+        case 'move_player'
+
+
+
+    }
+}
