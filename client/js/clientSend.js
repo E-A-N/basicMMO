@@ -16,7 +16,9 @@ Client.changeColor = function(color){
 Client.sendToServer = function(message, data){
     var allocatedData = {};
     switch(message){
-        case 'move_player'
+        case 'move_player':
+
+             break;
 
 
 
