@@ -1,8 +1,15 @@
+/**
+*    WebSockets module
+*    @module server/webSockets
+*/
+
+
 exports = module.exports = function(io){
 
     var players = {};
     var graphicsUpdate = false;
 
+    /** A new user has connected! */
     io.on('connection', function (socket) {
         console.log("* * * A new connection has been made.");
         console.log("* ID of new socket object: " + socket.id);
