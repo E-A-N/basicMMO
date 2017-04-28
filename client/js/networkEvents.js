@@ -1,11 +1,17 @@
 //Declare Client, establish connection
-var Client = {};
-Client.socket = io("http://127.0.0.1:7777");
+
 
 var NetEvents = function(){};
-NetEvent.prototype.init = function(){
+var Client = new NetEvents;
+NetEvent.prototype.init = function(ip){
+    /**
+    * @param {string} ip - ip address that will allow socket.io to interface with game client
+    */
     this.movePlayer     = "movePlayer";
     this.changeGraphics = "changeGraphics";
+
+    this.ip = ip || "http://127.0.0.1:7777";
+    this.socket = io(this.ip);
 }
 
 NetEvents.prototype.sendToServer = function(message,data){
