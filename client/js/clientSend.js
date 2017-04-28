@@ -1,4 +1,6 @@
 
+var netEvent = function(){};
+
 //Recieve Messages
 Client.movePlayer = function(axis,speed){
     var data = {};
