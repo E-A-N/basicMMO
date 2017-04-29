@@ -21,6 +21,10 @@ FunkyMultiplayerGame.Game.prototype = {
     update: function () {
         if(this.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
             socket.emit('move_player', {axis: 'x', force: -1});
+            var data = {};
+            data.axis = 'x';
+            data.force = -1;
+            Client.sendToServer(Client.movePlayer, data);
         }
         if(this.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
             socket.emit('move_player', {axis: 'x', force: 1});
