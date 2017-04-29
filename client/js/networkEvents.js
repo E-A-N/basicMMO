@@ -3,6 +3,7 @@
 
 var NetEvents = function(){};
 var Client = new NetEvents;
+
 NetEvent.prototype.init = function(ip){
     /**
     * @param {string} ip - ip address that will allow socket.io to interface with game client
