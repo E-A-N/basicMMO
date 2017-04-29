@@ -8,7 +8,7 @@ Client.movePlayer = function(axis,speed){
 }
 
 //New example of move player
-Client.sendToServer("move_player", )
+Client.sendToServer("move_player", data);
 
 Client.changeColor = function(color){
     var data = {};

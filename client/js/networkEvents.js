@@ -8,11 +8,17 @@ NetEvents.prototype.init = function(ip){
     /**
     * @param {string} ip - ip address that will allow socket.io to interface with game client
     */
-    this.movePlayer     = "movePlayer";
-    this.changeGraphics = "changeGraphics";
+
+    this.playerList = {};
 
     this.ip = ip || "http://127.0.0.1:7777";
     this.socket = io(this.ip);
+
+    this.movePlayer     = "move_player";
+    this.changeGraphics = "changeGraphics";
+
+
+
 }
 
 NetEvents.prototype.sendToServer = function(message,data){
@@ -22,3 +28,11 @@ NetEvents.prototype.sendToServer = function(message,data){
     */
     this.socket.emit(message,data);
 }
+
+NetEvents.prototype.allocateData = function(data){
+    /**
+    * @param {object} data - A package of network data delivered from the server
+    */
+}
+
+NetEvents.socket.on('state_update', NetEvents.allocateData);
