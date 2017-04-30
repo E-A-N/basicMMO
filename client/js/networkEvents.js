@@ -15,11 +15,12 @@ NetEvents.prototype.init = function(ip){
     this.ip = ip || "http://127.0.0.1:7777";
     this.socket = io(this.ip);
 
+    //Messages to SEND to server
     this.movePlayer     = "move_player";
     this.changeGraphics = "changeGraphics";
 
     //Messages FROM server
-    this.stateUpdate    = "state_update";
+    this.update    = "state_update";
     this.disconnect     = "disconnect";
     this.removePlayer   = "remove_player";
     this.joinedGame     = "join_game_success";
@@ -36,12 +37,54 @@ NetEvents.prototype.sendToServer = function(message,data){
 }
 
 //Check on player statuses
-NetEvents.prototype.allocatePlayerss = function(message, data){
+NetEvents.prototype.allocatePlayers = function(message, data){
+    /**
+    *   @param {string} message - instructions delivered from server
+    *   @param {object}   data    - a collection of players ( or individual player) to manage
+    */
+
     switch(message){
+        //successfully joined game!
+        case this.joinedGame:
+            console.log("You have joined the game!! :D");
+            this.game.state.start("Game");
+        break;
 
+        //update player positions and game status
         case this.stateUpdate:
+            var len = data.length;
+            for (var i = 0; i < len; i++){
+                var current = this.playerList[data[i].id];
+                if(current){
+                    current.x = data[i].x;
+                    current.y = data[i].y;
+                    current.tint = data[i].tint;
+                }
+            }
+        break;
 
-            break;
+        //update player graphics
+        case this.changeGraphics:
+            var len = data.length;
+            for (var i = 0; i < len; i++){
+                var current = this.playerList[data[i].id];
+                if(current){
+                    current.x = data[i].x;
+                }
+            }
+        break;
+
+        //remove player that has exited game
+        case this.removePlayer:
+            var current = this.playerList[data];
+            //make sure player is actually in game
+            if (current){
+                //Delete phaser sprite
+                current.destroy();
+                //Erase player data
+                delete current;
+            }
+        break;
     }
 
 }
@@ -52,4 +95,4 @@ NetEvents.prototype.allocateGameData = function(data){
     */
 }
 
-NetEvents.socket.on('state_update', NetEvents.allocateData);
+NetEvents.socket.on(NetEvents.update, NetEvents.allocateData);
