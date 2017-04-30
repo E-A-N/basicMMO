@@ -2,7 +2,7 @@
 
 
 var NetEvents = function(){};
-var Client = new NetEvents;
+//var Client = new NetEvents;
 
 NetEvents.prototype.init = function(ip){
     /**
@@ -51,7 +51,7 @@ NetEvents.prototype.allocatePlayers = function(message, data){
         break;
 
         //update player positions and game status
-        case this.stateUpdate:
+        case this.update:
             var len = data.length;
             for (var i = 0; i < len; i++){
                 var current = this.playerList[data[i].id];
