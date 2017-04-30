@@ -21,11 +21,12 @@ NetEvents.prototype.init = function(ip){
     this.changeGraphics = "changeGraphics";
 
     //Messages FROM server
-    this.update         = "state_update";
-    this.disconnect     = "disconnect";
-    this.removePlayer   = "remove_player";
-    this.addPlayers     = "addPlayers";
-    this.joinedGame     = "join_game_success";
+    this.update             = "state_update";
+    this.disconnect         = "disconnect";
+    this.removePlayer       = "remove_player";
+    this.addNewPlayer       = "newPlayer";
+    this.addPlayers         = "addPlayers";
+    this.joinedGame         = "join_game_success";
 
     //this.clientListen(); //listen for 'on' events
 }
@@ -46,6 +47,15 @@ NetEvents.prototype.allocatePlayers = function(message, data){
     */
 
     switch(message){
+
+        //Add a new player to the game
+        case this.addNewPlayer:
+            var x = data[i].x;
+            var y = data[i].y;
+            var img = "red-fly";
+            this.playerList[data[i].id] = this.game.add.sprite(x,y,img);
+        break;
+
         //successfully joined game!
         case this.joinedGame:
             console.log("You have joined the game!! :D");
@@ -95,5 +105,3 @@ NetEvents.prototype.allocateGameData = function(data){
     * @param {object} data - A package of network data delivered from the server
     */
 }
-
-NetEvents.socket.on(NetEvents.update, NetEvents.allocateData);
