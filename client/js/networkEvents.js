@@ -25,9 +25,6 @@ NetEvents.prototype.init = function(ip){
     this.joinedGame     = "join_game_success";
 
     //this.clientListen(); //listen for 'on' events
-
-
-
 }
 
 NetEvents.prototype.sendToServer = function(message,data){
@@ -43,7 +40,7 @@ NetEvents.prototype.allocatePlayerss = function(message, data){
     switch(message){
 
         case this.stateUpdate:
-            
+
             break;
     }
 
