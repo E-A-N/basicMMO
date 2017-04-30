@@ -6,9 +6,10 @@ var NetEvents = function(){};
 
 NetEvents.prototype.init = function(ip){
     /**
-    * @param {string} ip - ip address that will allow socket.io to interface with game client
     * @param {object} game - reference to the current phaser game
+    * @param {string} ip - ip address that will allow socket.io to interface with game client
     */
+
     this.game = game;
     this.playerList = {};
 
@@ -20,9 +21,10 @@ NetEvents.prototype.init = function(ip){
     this.changeGraphics = "changeGraphics";
 
     //Messages FROM server
-    this.update    = "state_update";
+    this.update         = "state_update";
     this.disconnect     = "disconnect";
     this.removePlayer   = "remove_player";
+    this.addPlayers     = "addPlayers";
     this.joinedGame     = "join_game_success";
 
     //this.clientListen(); //listen for 'on' events
@@ -86,7 +88,6 @@ NetEvents.prototype.allocatePlayers = function(message, data){
             }
         break;
     }
-
 }
 
 NetEvents.prototype.allocateGameData = function(data){
