@@ -24,6 +24,16 @@ exports = module.exports = function(io){
             console.log("* Username changed to: " + data.username);
         });
 
+        /*
+        socket.on('addNewPlayer', function(){
+            socket.player = {
+                x: 300,
+                y: 300,
+                tint: 0xffffff,
+            };
+        });
+        */
+
         socket.on('join_game', function () {
             // Check that the player is not already in a game before letting them join one.
             if(socket.isInGame === false){

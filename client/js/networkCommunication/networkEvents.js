@@ -24,7 +24,7 @@ NetEvents.prototype.init = function(ip){
     this.update             = "state_update";
     this.disconnect         = "disconnect";
     this.removePlayer       = "remove_player";
-    this.addNewPlayer       = "newPlayer";
+    this.addNewPlayer       = "addNewPlayer";
     this.addPlayers         = "addPlayers";
     this.joinedGame         = "join_game_success";
 
