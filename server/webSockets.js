@@ -4,7 +4,8 @@
 */
 
 /** Start the Server! */
-exports = module.exports = function(io){
+//exports = module.exports = function(io){
+module.exports = function(io){
 
     var players = {};
     var graphicsUpdate = false;
