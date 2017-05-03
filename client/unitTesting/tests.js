@@ -1,4 +1,6 @@
-QUnit.test( "hello test", function( assert ) {
-  //Test cohersion
-  assert.ok( 1 !== "1", "Passed!" );
-});
+QUnit.test( "Coercion Test", oneIsone);
+
+function oneIsone(assert){
+    assert.ok(1 !== "1", "Passed!");
+    assert.ok(1 == "1", "Passed!");
+}
