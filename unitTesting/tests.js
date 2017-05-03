@@ -7,7 +7,7 @@ function testClientAttributes(assert){
     //Create and initialize test client object
     var _tc = new NetEvents;
     var ip = "http://127.0.0.1:7777";
-    var game = {}; //for testing only this value will replace phaser instance
+    var game = {}; //for testing only this value represents phaser instance
     _tc.init(ip,game);
 
     assert.ok(_tc.movePlayer === "movePlayer", goodTest);
