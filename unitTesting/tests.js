@@ -46,20 +46,17 @@ function testClientPlayerAllocationAddRemovePlayer(assert){
     psuedoData.x = 150;
     psuedoData.y = 175;
     psuedoData.id = "G-$$$$!!";
-    var msg = _tc.addNewPlayer;
-    //pass data to be allocated
-    var allocated1 = _tc.allocatePlayers(msg,psuedoData);
-
-    //get number of players in current game instance
-    var playerAmount = Object.keys(_tc.playerList).length;
 
     //test allocation for player being added
-    assert.ok(playerAmount === 1, "Player Succeffully Added!");
+    var addData = _tc.addNewPlayer;
+    var allocated1 = _tc.allocatePlayers(addData,psuedoData);
+    var playerAmount = Object.keys(_tc.playerList).length;
+    assert.ok(playerAmount === 1, "Player successfully added!");
     assert.ok(allocated1, "Player Data allocated succefully");
 
     //test allocation for player removal
-    var destroyMsg = _tc.removePlayer;
-    var allocated2 = _tc.allocatePlayers(destroyMsg, psuedoData);
+    var destroyData = _tc.removePlayer;
+    var allocated2 = _tc.allocatePlayers(destroyData, psuedoData);
     var newAmount = Object.keys(_tc.playerList).length;
     assert.ok(newAmount === 0, "Player Successfully Destroyed!!");
     assert.ok(allocated2, "Player Data allocated successfully");
