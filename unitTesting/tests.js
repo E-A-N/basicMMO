@@ -1,5 +1,5 @@
 QUnit.test( "Client Attributes Test", testClientInstanceAttributes);
-QUnit.test( "Client Player Data Allocation Test", testClientPlayerAllocationAddNewPlayer);
+QUnit.test( "Client Player Data Allocation Test", testClientPlayerAllocationAddRemovePlayer);
 
 //Create and initialize test client object
 var _tc = new NetEvents;
@@ -36,7 +36,7 @@ function testClientInstanceAttributes(assert){
 }
 
 
-function testClientPlayerAllocationAddNewPlayer(assert){
+function testClientPlayerAllocationAddRemovePlayer(assert){
     /*
     Created psuedoData to pass as socket information.  This data acts as the
     ideal socket data being passed from the server
