@@ -45,15 +45,16 @@ NetEvents.prototype.allocatePlayers = function(message, data){
     *   @param {string} message - instructions delivered from server
     *   @param {object}   data    - a collection of players ( or individual player) to manage
     */
-
+    var dataAllocated;
     switch(message){
 
         //Add a new player to the game
         case this.addNewPlayer:
-            var x = data.x;
-            var y = data.y;
-            var img = "red-fly";
-            this.playerList[data.id] = this.game.add.sprite(x,y,img);
+            dataAllocated = this.addNewPlayerSocket(data);
+            //var x = data.x;
+            //var y = data.y;
+            //var img = "red-fly";
+            //this.playerList[data.id] = this.game.add.sprite(x,y,img);
         break;
 
         //successfully joined game!
@@ -91,6 +92,23 @@ NetEvents.prototype.allocatePlayers = function(message, data){
             delete this.playerList[data.id];
         break;
     }
+}
+
+NetEvents.prototype.addPlayerSocket = function(data){
+    /**
+    *   @param {object} data - socket containing information about new player
+    */
+    var dataAppended = false;
+
+    //Only add player socket to list if it doesn't exist
+    if (!this.playerList[data.id]){
+        var x = data.x;
+        var y = data.y;
+        var img = "red-fly";
+        this.game.add.sprite(x,y,img);
+        dataAppended = true;
+    }
+    return dataAppended;
 }
 
 NetEvents.prototype.allocateGameData = function(data){
