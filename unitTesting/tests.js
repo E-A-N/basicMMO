@@ -41,7 +41,7 @@ function testClientPlayerAllocationAddRemovePlayer(assert){
     Created psuedoData to pass as socket information.  This data acts as the
     ideal socket data being passed from the server
     */
-    var id = "G-$$$$!!"
+
     var psuedoData = {};
     psuedoData.x = 150;
     psuedoData.y = 175;
@@ -63,5 +63,12 @@ function testClientPlayerAllocationAddRemovePlayer(assert){
 }
 
 function testClientSpriteGraphicChange(assert){
+    /*
 
+    */
+
+
+    var psuedoData = {};
+    psuedoData.id = "Z-$$$$";
+    psuedoData.tint = 0xf345e6;
 }

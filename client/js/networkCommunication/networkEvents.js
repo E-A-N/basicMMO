@@ -74,13 +74,7 @@ NetEvents.prototype.allocatePlayers = function(message, data){
 
         //update player graphics
         case this.changeGraphics:
-            var len = data.length;
-            for (var i = 0; i < len; i++){
-                var current = this.playerList[data[i].id];
-                if(current){
-                    current.x = data[i].x;
-                }
-            }
+            dataAllocated = this.changeSpriteGraphics(data);
         break;
 
         //remove player that has exited game

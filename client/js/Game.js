@@ -20,7 +20,7 @@ FunkyMultiplayerGame.Game.prototype = {
 
     update: function () {
         if(this.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
-            socket.emit('move_player', {axis: 'x', force: -1});            
+            socket.emit('move_player', {axis: 'x', force: -1});
         }
         if(this.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
             socket.emit('move_player', {axis: 'x', force: 1});
@@ -34,7 +34,7 @@ FunkyMultiplayerGame.Game.prototype = {
         }
         //Change Color to random value
         if(this.input.keyboard.isDown(Phaser.Keyboard.ENTER)){
-            var randomColor = Math.random() * 0xffffff;
+            var randomColor = Math.floor(Math.random() * 0xffffff);
             var properties = {tint: 'tint', color: randomColor };
             socket.emit('changeGraphics', properties);
         }
