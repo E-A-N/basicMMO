@@ -85,7 +85,7 @@ NetEvents.prototype.allocatePlayers = function(message, data){
 
         //remove player that has exited game
         case this.removePlayer:
-            delete this.playerList[data.id];
+            dataAllocated = this.destroyPlayerSocket(data)
         break;
     }
     return dataAllocated;
@@ -106,6 +106,18 @@ NetEvents.prototype.addNewPlayerSocket = function(data){
         dataAppended = true;
     }
     return dataAppended;
+}
+
+NetEvents.prototype.destroyPlayerSocket = function(data){
+    /**
+    *   @param {object} data - socket containing information about player
+    */
+    var dataRemoved = false;
+    if(this.playerList[data.id]){
+        delete this.playerList[data.id];
+        dataRemoved = true;
+    }
+    return dataRemoved;
 }
 
 NetEvents.prototype.allocateGameData = function(data){
