@@ -45,16 +45,12 @@ NetEvents.prototype.allocatePlayers = function(message, data){
     *   @param {string} message - instructions delivered from server
     *   @param {object}   data    - a collection of players ( or individual player) to manage
     */
-    var dataAllocated;
+    var dataAllocated = false;
     switch(message){
 
         //Add a new player to the game
         case this.addNewPlayer:
             dataAllocated = this.addNewPlayerSocket(data);
-            //var x = data.x;
-            //var y = data.y;
-            //var img = "red-fly";
-            //this.playerList[data.id] = this.game.add.sprite(x,y,img);
         break;
 
         //successfully joined game!
@@ -92,9 +88,10 @@ NetEvents.prototype.allocatePlayers = function(message, data){
             delete this.playerList[data.id];
         break;
     }
+    return dataAllocated;
 }
 
-NetEvents.prototype.addPlayerSocket = function(data){
+NetEvents.prototype.addNewPlayerSocket = function(data){
     /**
     *   @param {object} data - socket containing information about new player
     */
@@ -105,7 +102,7 @@ NetEvents.prototype.addPlayerSocket = function(data){
         var x = data.x;
         var y = data.y;
         var img = "red-fly";
-        this.game.add.sprite(x,y,img);
+        this.playerList[data.id] = this.game.add.sprite(x,y,img);
         dataAppended = true;
     }
     return dataAppended;
