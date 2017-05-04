@@ -50,10 +50,10 @@ NetEvents.prototype.allocatePlayers = function(message, data){
 
         //Add a new player to the game
         case this.addNewPlayer:
-            var x = data[i].x;
-            var y = data[i].y;
+            var x = data.x;
+            var y = data.y;
             var img = "red-fly";
-            this.playerList[data[i].id] = this.game.add.sprite(x,y,img);
+            this.playerList[data.id] = this.game.add.sprite(x,y,img);
         break;
 
         //successfully joined game!
