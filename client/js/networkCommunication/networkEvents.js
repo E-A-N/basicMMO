@@ -88,14 +88,7 @@ NetEvents.prototype.allocatePlayers = function(message, data){
 
         //remove player that has exited game
         case this.removePlayer:
-            var current = this.playerList[data];
-            //make sure player is actually in game
-            if (current){
-                //Delete phaser sprite
-                current.destroy();
-                //Erase player data
-                delete current;
-            }
+            delete this.playerList[data.id];
         break;
     }
 }
