@@ -122,10 +122,17 @@ NetEvents.prototype.destroyPlayerSocket = function(data){
 
 NetEvents.prototype.changeSpriteGraphics = function(data){
     /**
-    *   @param {object} data - socket containing information about player
+    *   @param {object} data - A collection of all player data from server
     */
     var graphicsChanged = false;
-
+    var len = data.length;
+    for(var i = 0; i < len; i++) {
+        var player = this.playerList[data[i].id];
+        if (player) {
+            player.tint = data[i].tint;
+            graphicsChanged = true;
+        }
+    }
     return graphicsChanged;
 }
 
