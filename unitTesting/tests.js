@@ -1,6 +1,6 @@
 QUnit.test( "Client Attributes Test", testClientInstanceAttributes);
 QUnit.test( "Client Player Data Allocation Test", testClientPlayerAllocationAddRemovePlayer);
-
+QUnit.test( "Client Sprite Graphic Change Test", testClientSpriteGraphicChange);
 //Create and initialize test client object
 var _tc = new NetEvents;
 var ip = "http://127.0.0.1:7777";
@@ -60,4 +60,8 @@ function testClientPlayerAllocationAddRemovePlayer(assert){
     var newAmount = Object.keys(_tc.playerList).length;
     assert.ok(newAmount === 0, "Player Successfully Destroyed!!");
     assert.ok(allocated2, "Player Data allocated successfully");
+}
+
+function testClientSpriteGraphicChange(assert){
+
 }

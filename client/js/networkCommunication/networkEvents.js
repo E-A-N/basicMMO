@@ -120,6 +120,15 @@ NetEvents.prototype.destroyPlayerSocket = function(data){
     return dataRemoved;
 }
 
+NetEvents.prototype.changeSpriteGraphics = function(data){
+    /**
+    *   @param {object} data - socket containing information about player
+    */
+    var graphicsChanged = false;
+
+    return graphicsChanged;
+}
+
 NetEvents.prototype.allocateGameData = function(data){
     /**
     * @param {object} data - A package of network data delivered from the server
