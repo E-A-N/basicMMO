@@ -6,8 +6,8 @@ var NetEvents = function(){};
 
 NetEvents.prototype.init = function(ip,game){
     /**
-    * @param {object} game - reference to the current phaser game
     * @param {string} ip - ip address that will allow socket.io to interface with game client
+    * @param {object} game - reference to the current phaser game
     */
 
     this.game = game || null;

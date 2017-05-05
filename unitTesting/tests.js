@@ -68,7 +68,9 @@ function testClientSpriteGraphicChange(assert){
     */
 
 
-    var psuedoData = {};
-    psuedoData.id = "Z-$$$$";
-    psuedoData.tint = 0xf345e6;
+    var testData1 = {};
+    testData1.id = "Z-$$$$";
+    testData1.tint = 0xf345e6;
+    testData1.graphicUpdate = true;
+
 }
