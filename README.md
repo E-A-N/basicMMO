@@ -1,4 +1,4 @@
-# A templet to simplify and abstract my future MMO projects
+# A template to simplify and abstract my future MMO projects
 
 ## Features
 * Test Driven
