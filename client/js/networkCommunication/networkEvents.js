@@ -61,15 +61,7 @@ NetEvents.prototype.allocatePlayers = function(message, data){
 
         //update player positions and game status
         case this.update:
-            var len = data.length;
-            for (var i = 0; i < len; i++){
-                var current = this.playerList[data[i].id];
-                if(current){
-                    current.x = data[i].x;
-                    current.y = data[i].y;
-                    current.tint = data[i].tint;
-                }
-            }
+            dataAllocated = this.allocateGameData(data);
         break;
 
         //update player graphics
@@ -101,6 +93,7 @@ NetEvents.prototype.addNewPlayerSocket = function(data){
     }
     return dataAppended;
 }
+
 
 NetEvents.prototype.destroyPlayerSocket = function(data){
     /**
@@ -134,4 +127,16 @@ NetEvents.prototype.allocateGameData = function(data){
     /**
     * @param {object} data - A package of network data delivered from the server
     */
+    var allocated = false;
+    var len = data.length;
+    for (var i = 0; i < len; i++){
+        var current = this.playerList[data[i].id];
+        if(current){
+            current.x = data[i].x;
+            current.y = data[i].y;
+            current.tint = data[i].tint;
+            allocated = true;
+        }
+    }
+    return allocated;
 }
