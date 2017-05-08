@@ -55,8 +55,7 @@ NetEvents.prototype.allocatePlayers = function(message, data){
 
         //successfully joined game!
         case this.joinedGame:
-            console.log("You have joined the game!! :D");
-            this.game.state.start("Game");
+            dataAllocated = this.joinGameSocket(data);
         break;
 
         //update player positions and game status
@@ -75,6 +74,15 @@ NetEvents.prototype.allocatePlayers = function(message, data){
         break;
     }
     return dataAllocated;
+}
+
+NetEvents.prototype.joinGameSocket = function(data){
+    var joined = false;
+    console.log("You have joined the game!! :D");
+    this.game.state.start("Game");
+    joined = true;
+
+    return joined;
 }
 
 NetEvents.prototype.addNewPlayerSocket = function(data){
