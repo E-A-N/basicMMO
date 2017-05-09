@@ -65,7 +65,7 @@ NetEvents.prototype.allocatePlayers = function(message, data){
 
         //update player graphics
         case this.changeGraphics:
-            dataAllocated = this.changeSpriteGraphics(data);
+            dataAllocated = this.changeGraphicsSocket(data);
         break;
 
         //remove player that has exited game
@@ -115,7 +115,7 @@ NetEvents.prototype.destroyPlayerSocket = function(data){
     return dataRemoved;
 }
 
-NetEvents.prototype.changeSpriteGraphics = function(data){
+NetEvents.prototype.changeSpriteSocket = function(data){
     /**
     *   @param {object} data - A collection of all player data from server
     */

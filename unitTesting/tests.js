@@ -4,6 +4,7 @@ QUnit.test( "Client Sprite Graphic Change Test", testClientSpriteGraphicChange);
 //Create and initialize test client object
 var _tc = new NetEvents;
 var ip = "http://127.0.0.1:7777";
+var socketTest = io(ip);
 
 //Create phaser game instance for testing
 var testID = "testCanvas"
@@ -73,4 +74,8 @@ function testClientSpriteGraphicChange(assert){
     testData1.tint = 0xf345e6;
     testData1.graphicUpdate = true;
 
+    var changeRequest = _tc.changeGraphics;
+    var sprChange = _tc.changeSpriteSocket(changeRequest,testData1);
+
+    assert.ok(sprChange, "Sprite data has flowed to server!");
 }
