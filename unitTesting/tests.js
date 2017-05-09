@@ -19,7 +19,12 @@ hideGame.style.display = 'none'; //hide the phaser game from the GUI
 
 ///***TEST WEBSOCKETS***//
 function quickSocketTest(assert){
-
+    var testData = {};
+    socketTest.on("serverResponse",function(data){
+        testData.info = data.test1;
+    });
+    var equal = testData.info === "Frosty Pookie Eddie Eddie!";
+    asser
 }
 
 ///***TEST THE ATTRIBUTES OF THE CLIENT INSTANCE***///

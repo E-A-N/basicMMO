@@ -14,6 +14,11 @@ var servRoute = path.join(__dirname,'server','webSockets');
 servRoute = path.normalize(servRoute);
 var webSockets = require(servRoute)(io);
 
+//Run socket connections for testing
+var unitTestRoute = path.join(__dirname, 'server','testSockets');
+unitTestRoute = path.normalize(unitTestRoute);
+var testSockets = require(unitTestRoute)(io)
+
 //open port for game to be played on
 var sitePath = process.argv[2] || ".";
 var port = 7777;
