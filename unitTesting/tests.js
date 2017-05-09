@@ -1,6 +1,8 @@
 QUnit.test( "Client Attributes Test", testClientInstanceAttributes);
 QUnit.test( "Client Player Data Allocation Test", testClientPlayerAllocationAddRemovePlayer);
 QUnit.test( "Client Sprite Graphic Change Test", testClientSpriteGraphicChange);
+
+
 //Create and initialize test client object
 var _tc = new NetEvents;
 var ip = "http://127.0.0.1:7777";
@@ -15,9 +17,13 @@ var hideGame = document.getElementById(testID);
 hideGame.style.display = 'none'; //hide the phaser game from the GUI
 
 
+///***TEST WEBSOCKETS***//
+function quickSocketTest(assert){
+
+}
+
 ///***TEST THE ATTRIBUTES OF THE CLIENT INSTANCE***///
 function testClientInstanceAttributes(assert){
-
 
     //Game Instance
     assert.ok(_tc.game !== null, "Phaser instance has passed!");

@@ -22,16 +22,16 @@ var address = "http://localhost:";
 var gameRoute = path.join(__dirname,'client',sitePath);
 gameRoute = path.normalize(gameRoute);
 
-/*
+
 //request logging
 app.use(function(req, res, next) {
 	console.log(req.url);
 	next();
 });
-*/
+
 //start server
 console.log(sitePath);
-console.log("Starting server in: " + gameRoute);
+console.log("Starting test server in: " + gameRoute);
 
 app.use(express.static(gameRoute));
 server.listen(port, function() {

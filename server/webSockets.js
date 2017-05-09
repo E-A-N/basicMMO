@@ -90,6 +90,9 @@ module.exports = function(io){
         // When a client socket disconnects (closes the page, refreshes, timeout etc.),
         // then this event will automatically be triggered.
         socket.on('disconnecting', function () {
+
+            //Notify self about disconnection
+            console.log(socket.id + " has disconnted!");
             // Check if this player was in a game before they disconnected.
             if(socket.isInGame === true){
                 // Remove this player from the player list.
