@@ -4,11 +4,11 @@
 var NetEvents = function(){};
 //var Client = new NetEvents;
 
+/**
+* @param {string} ip - ip address that will allow socket.io to interface with game client
+* @param {object} game - reference to the current phaser game
+*/
 NetEvents.prototype.init = function(ip,game){
-    /**
-    * @param {string} ip - ip address that will allow socket.io to interface with game client
-    * @param {object} game - reference to the current phaser game
-    */
 
     this.game = game || null;
     this.playerList = {};
@@ -31,20 +31,22 @@ NetEvents.prototype.init = function(ip,game){
     //this.clientListen(); //listen for 'on' events
 }
 
+/**
+* @param {string} message - message key used to pass to server
+* @param {object} data    - game mechanic related data to pass to server
+*/
 NetEvents.prototype.sendToServer = function(message,data){
-    /**
-    * @param {string} message - message key used to pass to server
-    * @param {object} data    - game mechanic related data to pass to server
-    */
     this.socket.emit(message,data);
 }
 
-//Check on player statuses
+
+/** Check on player statuses
+*   @param {string} message - instructions delivered from server
+*   @param {object}   data    - a collection of players ( or individual player) to manage
+*   @return {bool}
+*/
 NetEvents.prototype.allocatePlayers = function(message, data){
-    /**
-    *   @param {string} message - instructions delivered from server
-    *   @param {object}   data    - a collection of players ( or individual player) to manage
-    */
+
     var dataAllocated = false;
     switch(message){
 
@@ -76,6 +78,10 @@ NetEvents.prototype.allocatePlayers = function(message, data){
     return dataAllocated;
 }
 
+/**
+*    @param {string} data - message from server
+*    @return {bool}
+*/
 NetEvents.prototype.joinGameSocket = function(data){
     var joined = false;
     console.log("You have joined the game!! :D");
@@ -85,10 +91,11 @@ NetEvents.prototype.joinGameSocket = function(data){
     return joined;
 }
 
+/**
+*    @param {object} data - socket containing information about new player
+*    @return {bool}
+*/
 NetEvents.prototype.addNewPlayerSocket = function(data){
-    /**
-    *   @param {object} data - socket containing information about new player
-    */
     var dataAppended = false;
 
     //Only add player socket to list if it doesn't exist
@@ -102,11 +109,11 @@ NetEvents.prototype.addNewPlayerSocket = function(data){
     return dataAppended;
 }
 
-
+/**
+*    @param {object} data - socket containing information about player
+*    @return {bool}
+*/
 NetEvents.prototype.destroyPlayerSocket = function(data){
-    /**
-    *   @param {object} data - socket containing information about player
-    */
     var dataRemoved = false;
     if(this.playerList[data.id]){
         delete this.playerList[data.id];
@@ -115,10 +122,11 @@ NetEvents.prototype.destroyPlayerSocket = function(data){
     return dataRemoved;
 }
 
+/**
+*    @param {object} data - A collection of all player data from server
+*    @return {bool}
+*/
 NetEvents.prototype.changeSpriteSocket = function(data){
-    /**
-    *   @param {object} data - A collection of all player data from server
-    */
     var graphicsChanged = false;
     var len = data.length;
     for(var i = 0; i < len; i++) {
@@ -131,10 +139,11 @@ NetEvents.prototype.changeSpriteSocket = function(data){
     return graphicsChanged;
 }
 
+/**
+*    @param {object} data - A package of network data delivered from the server
+*    @return {bool}
+*/
 NetEvents.prototype.allocateGameData = function(data){
-    /**
-    * @param {object} data - A package of network data delivered from the server
-    */
     var allocated = false;
     var len = data.length;
     for (var i = 0; i < len; i++){
